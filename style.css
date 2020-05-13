@@ -6,4 +6,48 @@ body{
     align-items: center;
     flex-direction: column;
     color: rgb(1, 65, 1);
+    font-family: fantasy;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0px 20px 20px 20px;
+    width: 768px;
+}
+
+div.menu{
+    flex-direction: column;
+}
+
+canvas{
+    border: solid;
+    margin-left: 50px;
+}
+
+button{
+    color: black;
+    background-color: rgb(21, 255, 33);
+    opacity: 0.5;
+    transition: 0.1s;
+    width: 200px;
+    height: 80px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+button:hover{
+    opacity: 1.0;
+}
+
+h2{
+    font-size: 24px;
+    font-weight: 400;  
+}
+
+h1{
+    font-size: 48px;
 }
