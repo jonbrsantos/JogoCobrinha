@@ -20,6 +20,10 @@ div {
 
 div.container{  
     width: 800px;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
 }
 
 div.menu{
@@ -27,12 +31,15 @@ div.menu{
 }
 
 canvas{
-    border: solid;
+    border-radius: 0px;
     margin: 0px 0px 0px 0px;
+    border: solid;
 }
 
 button{
     color: black;
+    border-radius: 40px;
+    margin: 5px;
     background-color: rgb(21, 255, 33);
     opacity: 0.5;
     transition: 0.1s;
@@ -40,19 +47,33 @@ button{
     height: 80px;
     font-size: 24px;
     font-weight: 600;
+    border: solid;
 }
 
 button:hover{
-    opacity: 1.0;
+    opacity: 0.8;
 }
 
 h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 80px;
+    padding: 0px;
+    margin: 5px;
+    background-color: rgb(21, 255, 33);
+    border: solid;
+    color: black;
+    border-radius: 40px;
     font-size: 24px;
     font-weight: 400;  
 }
 
 h1{
     width: 236px;
+    height: 120px;
+    border-radius: 80px;
     font-size: 48px;
     font-stretch: extra-expanded;
     margin: 15px 0px 15px 0px;
@@ -63,5 +84,6 @@ h1{
 }
 
 footer{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
 }

@@ -97,17 +97,38 @@ function novoJogo(){
     for (i = 1 ; i < snake.length; i) {
         snake.pop();
     }
+    snake[0] = {
+        x: 3 * box,
+        y: 3 * box
+    };
+    direction = "right";
+
     clearInterval(jogo);
     jogo = setInterval(iniciarJogo, 100);
 }
 
+function borda(){
+
+    for (i = 1 ; i < snake.length; i) {
+        snake.pop();
+    }
+    let borda = document.getElementById("snake").style.border;
+    if (borda === "transparent"){
+        document.getElementById("snake").style.border = "solid";
+        document.getElementById("borda").style.opacity = 1.0;
+    } else{
+        document.getElementById("snake").style.border = "transparent";
+        document.getElementById("borda").style.opacity = 0.5;
+    }
+}
+
 function iniciarJogo(){
 
-    let fimdejogo = false
+    let fimDeJogo = false
     for(i = 1 ; i < snake.length ; i++) {
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(jogo);
-            fimdejogo = true;
+            fimDeJogo = true;
             //alert('GameOver');
         }
     }
@@ -115,7 +136,7 @@ function iniciarJogo(){
     criarBG();
     criarCobrinha();
     criarFrutinha();
-    if (fimdejogo == true){ GameOver()};
+    if (fimDeJogo == true){ GameOver()};
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
@@ -125,10 +146,18 @@ function iniciarJogo(){
     if (direction == "up") snakeY -= box;
     if (direction == "down") snakeY += box;
 
-    if (snakeX == (15+1) * box) snakeX = 0;
-    if (snakeY == (15+1) * box) snakeY = 0;
-    if (snakeX < 0 * box) snakeX = 15 * box;
-    if (snakeY < 0 * box) snakeY = 15 * box;
+    let borda = document.getElementById("snake").style.border;
+    if (borda === "transparent"){
+        if (snakeX == (15+1) * box) snakeX = 0;
+        if (snakeY == (15+1) * box) snakeY = 0;
+        if (snakeX < 0 * box) snakeX = 15 * box;
+        if (snakeY < 0 * box) snakeY = 15 * box;
+    } else{
+        if (snakeX == (15+1) * box) GameOver();
+        if (snakeY == (15+1) * box) GameOver();
+        if (snakeX < 0 * box) GameOver();
+        if (snakeY < 0 * box) GameOver();
+    }
 
     let newHead = {
         x: snakeX,
@@ -142,7 +171,7 @@ function iniciarJogo(){
         food.y = Math.floor(Math.random() * 15)*box;
         document.getElementById("pontos").innerHTML = ("Pontos:" + snake.length);
 
-        if (velocidade > 30) velocidade = 100 - snake.length;
+        if (velocidade > 30) velocidade = 100 - 3*snake.length;
         clearInterval(jogo);
         jogo = setInterval(iniciarJogo, velocidade);
     }
@@ -151,5 +180,6 @@ function iniciarJogo(){
 
 }
 
+document.getElementById("snake").style.border = "transparent";
 let velocidade = 100;
 jogo = setInterval(iniciarJogo, velocidade);
