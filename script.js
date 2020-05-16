@@ -1,6 +1,8 @@
 let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
+let tamanho;
+tamanho = 512 / box;
 let snake = [];
 snake[0] = {
     x: 3 * box,
@@ -14,7 +16,7 @@ let food = {
 
 function criarBG(){
     context.fillStyle = "lightgreen";
-    context.fillRect(0,0, 16 * box, 16 * box);
+    context.fillRect(0,0, tamanho * box, tamanho * box);
 }
 
 function criarCobrinha(){
@@ -102,6 +104,7 @@ function novoJogo(){
         y: 3 * box
     };
     direction = "right";
+    fimDeJogo = false;
 
     clearInterval(jogo);
     jogo = setInterval(iniciarJogo, 100);
@@ -123,8 +126,6 @@ function borda(){
 }
 
 function iniciarJogo(){
-
-    let fimDeJogo = false
     for(i = 1 ; i < snake.length ; i++) {
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(jogo);
@@ -148,15 +149,15 @@ function iniciarJogo(){
 
     let borda = document.getElementById("snake").style.border;
     if (borda === "transparent"){
-        if (snakeX == (15+1) * box) snakeX = 0;
-        if (snakeY == (15+1) * box) snakeY = 0;
-        if (snakeX < 0 * box) snakeX = 15 * box;
-        if (snakeY < 0 * box) snakeY = 15 * box;
+        if (snakeX > ((tamanho-1)) * box) snakeX = 0;
+        if (snakeY > ((tamanho-1)) * box) snakeY = 0;
+        if (snakeX < 0 * box) snakeX = (tamanho-1) * box;
+        if (snakeY < 0 * box) snakeY = (tamanho-1) * box;
     } else{
-        if (snakeX == (15+1) * box) GameOver();
-        if (snakeY == (15+1) * box) GameOver();
-        if (snakeX < 0 * box) GameOver();
-        if (snakeY < 0 * box) GameOver();
+        if (snakeX > ((tamanho-1)) * box) fimDeJogo = true;
+        if (snakeY > ((tamanho-1)) * box) fimDeJogo = true;
+        if (snakeX < 0 * box) fimDeJogo = true;
+        if (snakeY < 0 * box) fimDeJogo = true;
     }
 
     let newHead = {
@@ -167,8 +168,8 @@ function iniciarJogo(){
     if (snakeX != food.x || snakeY != food.y){
         snake.pop();
     } else{
-        food.x = Math.floor(Math.random() * 15)*box;
-        food.y = Math.floor(Math.random() * 15)*box;
+        food.x = Math.floor(Math.random() * (tamanho-1))*box;
+        food.y = Math.floor(Math.random() * (tamanho-1))*box;
         document.getElementById("pontos").innerHTML = ("Pontos:" + snake.length);
 
         if (velocidade > 30) velocidade = 100 - 3*snake.length;
@@ -182,4 +183,5 @@ function iniciarJogo(){
 
 document.getElementById("snake").style.border = "transparent";
 let velocidade = 100;
+let fimDeJogo = false
 jogo = setInterval(iniciarJogo, velocidade);
