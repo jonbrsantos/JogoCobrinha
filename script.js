@@ -97,6 +97,7 @@ function novoJogo(){
     for (i = 1 ; i < snake.length; i) {
         snake.pop();
     }
+    clearInterval(jogo);
     jogo = setInterval(iniciarJogo, 100);
 }
 
@@ -140,9 +141,15 @@ function iniciarJogo(){
         food.x = Math.floor(Math.random() * 15)*box;
         food.y = Math.floor(Math.random() * 15)*box;
         document.getElementById("pontos").innerHTML = ("Pontos:" + snake.length);
+
+        if (velocidade > 30) velocidade = 100 - snake.length;
+        clearInterval(jogo);
+        jogo = setInterval(iniciarJogo, velocidade);
     }
 
     snake.unshift(newHead);
 
 }
 
+let velocidade = 100;
+jogo = setInterval(iniciarJogo, velocidade);

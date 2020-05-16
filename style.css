@@ -1,12 +1,11 @@
 body{
-    height: 95vh;
-    width: 95;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: rgb(1, 65, 1);
     font-family: fantasy;
+    background-color: rgb(0, 0, 0);
+    padding: 0px;
 }
 
 div {
@@ -14,9 +13,13 @@ div {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0px;
-    margin: 0px 20px 20px 20px;
-    width: 768px;
+    margin: 0px 0px 0px 0px;
+    padding: 20px;
+    background-color: rgb(230, 230, 230);
+}
+
+div.container{  
+    width: 800px;
 }
 
 div.menu{
@@ -25,7 +28,7 @@ div.menu{
 
 canvas{
     border: solid;
-    margin-left: 50px;
+    margin: 0px 0px 0px 0px;
 }
 
 button{
@@ -49,5 +52,16 @@ h2{
 }
 
 h1{
+    width: 236px;
     font-size: 48px;
+    font-stretch: extra-expanded;
+    margin: 15px 0px 15px 0px;
+    padding: 10px;
+    text-align: center;
+    background-color: darkgreen;
+    color: whitesmoke;
+}
+
+footer{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
